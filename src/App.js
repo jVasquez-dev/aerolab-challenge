@@ -1,11 +1,14 @@
+import { AppState } from './context/AppState';
 import { MainPage } from './pages/MainPage';
 
-import 'bootstrap/dist/css/bootstrap.min.css';
-import './styles/styles.css'
+import './styles/index.css'
 
 function App() {
   return (
-    <MainPage />
+    <AppState>
+      <MainPage />
+    </AppState>
+    
   );
 }
 

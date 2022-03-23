@@ -1,34 +1,29 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
+
+import { FiltersBar } from '../components/FiltersBar';
 import { HeaderImage } from '../components/HeaderImage';
 import { ProductGrid } from '../components/ProductGrid';
 import { UserBar } from '../components/UserBar';
+import appContext from '../context/app-context';
 
 export const MainPage = () => {
 
-    const [products, setProducts] = useState('')
+    const {dispatch, products, startLoadingProducts, startLoadingUser} = useContext(appContext)
 
     useEffect(() => {
 
-        const getData = async () => {
-            const headers = {
-                'Content-Type': 'application/json',
-                'Accept': 'application/json',
-                'Authorization': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MWY3MWUyODM4NDA4NzAwMWE3NjIyMjIiLCJpYXQiOjE2NDM1ODUwNjR9.pw_ysueUouPw1sUguOxzkttBNMi4onX7EM50wIY-irQ'
-            }
-            const response = await fetch('https://coding-challenge-api.aerolab.co/products', { headers })
-            const data = await response.json()
-            setProducts(data)
-        }
-
-        getData()
+        dispatch(startLoadingProducts)
+        dispatch(startLoadingUser)
+        
     }, [])
 
-
     return (
-        <div className='bg-light'>
+        
+        <div className='bg-slate-50'>
             <UserBar />
             <HeaderImage />
-            { products ? <ProductGrid products={products} /> : <p>load</p>}
+            <FiltersBar />
+            { products.length == 0 ? <p>load</p> : <ProductGrid products={products} />}
         </div>
     )
 };

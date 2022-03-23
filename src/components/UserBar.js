@@ -1,17 +1,22 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import appContext from '../context/app-context';
 
 import logo from '../images/aerolab-logo.svg'
 import coin from '../images/icons/coin.svg'
 
 export const UserBar = () => {
+
+    const {points, userName} = useContext(appContext)
+    console.log(userName)
+
     return (
-        <div className='bg-light container d-flex align-items-center justify-content-between pt-3 pb-3 w-100'>
+        <div className='container flex justify-between px-4 py-5'>
             <img src={logo} alt='logo' />
-            <div className='d-flex align-items-center'>
-                <p className='m-0 me-3 fs-5'>Jhon Kitte</p>
-                <div className='d-flex align-items-center bg-secondary rounded-pill ps-2'>
-                    <p className='m-0 me-1 fs-5'>6000</p>
-                    <img className='w-25 mt-1' src={coin} />
+            <div className='flex text-xl items-center justify-between w-56'>
+                <p>{userName}</p>
+                <div className='flex bg-gray-200 items-center justify-between px-5 py-2 rounded-full w-28'>
+                    <p className=''>{points}</p>
+                    <img className='w-6' src={coin} alt='coin' />
                 </div>
             </div>
         </div>

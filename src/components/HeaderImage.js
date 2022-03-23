@@ -5,7 +5,7 @@ import img from '../images/header-x1.png'
 export const HeaderImage = () => {
   return (
     <div>
-        <img className='w-100 mx-50' style={{'height': '412px'}} src={img} />
+        <img className='h-96 w-full object-cover' src={img} />
     </div>
   )
 }
