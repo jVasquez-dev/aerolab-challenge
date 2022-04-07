@@ -12,6 +12,8 @@ export const AppState = (props) => {
         points: 0,
         loading: true,
         products: [],
+        order: 'date',
+        currentPage: 1
     }
 
     const [state, dispatch] = useReducer(appReducer, initialState)
@@ -62,11 +64,15 @@ export const AppState = (props) => {
             dispatch: asyncDispatch,
             loading: state.loading,
             startLoadingProducts,
+            order: state.order,
             points: state.points,
             products: state.products,
             startLoadingUser,
             uid: state.uid,
-            userName: state.userName
+            userName: state.userName,
+            currentPage: state.currentPage,
+            pageSize: 12,
+            totalProducts: state.products.length
         }}
     >
         { props.children }

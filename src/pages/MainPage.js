@@ -1,4 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
+import { BottomBar } from '../components/BottomBar';
 
 import { FiltersBar } from '../components/FiltersBar';
 import { HeaderImage } from '../components/HeaderImage';
@@ -19,11 +20,12 @@ export const MainPage = () => {
 
     return (
         
-        <div className='bg-slate-50'>
+        <div className='bg-slate-50 pb-7'>
             <UserBar />
             <HeaderImage />
             <FiltersBar />
             { products.length == 0 ? <p>load</p> : <ProductGrid products={products} />}
+            <BottomBar />
         </div>
     )
 };
